@@ -1,0 +1,23 @@
+{
+  "name": "css-cigarettes-pack-3d",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postcss": "postcss --config postcss.config.js postcss/*.scss --dir scss",
+    "scss": "node-sass scss/style.scss css/style.css",
+    "dev": "npm-run-all postcss scss"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "caniuse-lite": "^1.0.30000715",
+    "node-sass": "^4.5.3",
+    "npm-run-all": "^4.0.2",
+    "postcss-cli": "^4.1.0",
+    "postcss-cssnext": "^3.0.2",
+    "postcss-load-config": "^1.2.0",
+    "postcss-scss": "^1.0.2"
+  }
+}
