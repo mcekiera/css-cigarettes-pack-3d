@@ -2,21 +2,29 @@ doctype html
 html(lang="en")
 include head
 body
-.background
-  .plane
-    .pack
-      .pack__out
-        .pack__out--front
-        .pack__out--back
-        .pack__out--left
-        .pack__out--right
-        .pack__in
-          .pack__in--front.front
-            .front__main
-            .front__column--left
-            .front__column--right
-          .pack__in--back
-          .pack__in--left
-          .pack__in--right
-          .pack__in--bottom
-          include cigarettes
+.container
+  .background
+    .plane
+      .pack
+        .top
+          .top__front
+          .top__back
+          .top__left
+          .top__right
+          .top__top
+        .outside
+          .outside__front
+          .outside__back
+          .outside__left
+          .outside__right
+          .outside__bottom
+          .inside
+            .inside__front.front
+              .front__main
+              .front__column--left
+              .front__column--right
+            .inside__back
+            .inside__left
+            .inside__right
+            .inside__bottom
+            include cigarettes
