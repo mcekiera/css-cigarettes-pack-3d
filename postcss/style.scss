@@ -17,6 +17,7 @@ depth: 20mm
   --c-pack-inside: #fff;
   --c-border-inside: #aaa;
   --c-border-outside: #aaa;
+  --c-marlboro-red: #BA181F;
 }
 
 .container {
@@ -88,10 +89,10 @@ depth: 20mm
 
     &:after {
       position: absolute;
-      width: 100%;
+      width: 102%;
       height: 100%;
       top: 0;
-      left: 0;
+      left: -1%;
       content: '';
       transform: translateZ(-1px);
     }
@@ -140,11 +141,11 @@ depth: 20mm
 
     @if $i < 8 {
       &:after {
-        // background: linear-gradient(90deg, rgba(0,0,0, abs($i / 10 - 0.8)), rgba(0,0,0, abs(($i + 1) / 10 - 0.8)));
+         background: linear-gradient(90deg, rgba(0,0,0, abs($i / 10 - 0.8)), rgba(0,0,0, abs(($i + 1) / 10 - 0.8)));
       }
     } @else if $i > 8 {
       &:after {
-        // background: linear-gradient(90deg, rgba(0,0,0, abs(0.9 - ($i / 10))), rgba(0,0,0, abs(0.8 - ($i / 10))));
+         background: linear-gradient(90deg, rgba(0,0,0, abs(0.9 - ($i / 10))), rgba(0,0,0, abs(0.8 - ($i / 10))));
       }
     }
   }
@@ -275,6 +276,18 @@ depth: 20mm
   height: var(--d-height) + 2 * var(--d-diff-outside);
   width: var(--d-diameter) * 7 + 2 * var(--d-diff-outside);
 
+  &__sign {
+    bottom: 10px;
+    position: absolute;
+    text-transform: uppercase;
+    font-size: 18px;
+    display: block;
+    text-align: center;
+    width: 100%;
+    letter-spacing: 2px;
+    color: #A67444;
+  }
+
   &__front {
     bottom: -1 * var(--d-diff-outside);
     left: -1.5 * var(--d-diff-outside);
@@ -282,8 +295,12 @@ depth: 20mm
     height: 75%;
     width: (var(--d-diameter) * 7) + (3 * var(--d-diff-outside));
     transform: translateZ(1.5 * var(--d-diameter) + var(--d-diff-outside));
-    background-color: var(--c-pack-inside);
+    background-image: url("../img/marlboro-logo.png");
     border: 1px solid var(--c-border-outside);
+    background-size: 100% auto;
+    background-position-y: -120px;
+    background-repeat: no-repeat;
+    background-color: #fff;
   }
 
   &__back {
@@ -293,9 +310,14 @@ depth: 20mm
     position: absolute;
     height: 95%;
     width: var(--d-diameter) * 7 + 3 * var(--d-diff-outside);
-    background-color: darken(var(--c-pack-inside), 20%);
-    transform: translateZ(-1.5 * var(--d-diameter) - var(--d-diff-outside));
+    background-image: url("../img/marlboro-logo.png");
     border: 1px solid var(--c-border-outside);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-color: #fff;
+    transform: translateZ(-1.5 * var(--d-diameter) - var(--d-diff-outside)) rotateY(180deg);
+    border: 1px solid var(--c-border-outside);
+    background-position: 0 -35px;
   }
 
   &__left,
@@ -305,6 +327,7 @@ depth: 20mm
     bottom: -1 * var(--d-diff-outside);
     width: var(--d-diameter) * 3 + 2 * var(--d-diff-outside);
     border: 1px solid var(--c-border-outside);
+    background: linear-gradient(#BA181F 29%, #fff 29%);
   }
 
   &__bottom {
@@ -314,15 +337,17 @@ depth: 20mm
     height: var(--d-diameter) * 3 + 2 * var(--d-diff-outside);
     bottom: (var(--d-diameter) * 3 + 3 * var(--d-diff-outside)) / -2 - var(--d-diff-outside);
     left: -1.5 * var(--d-diff-outside);
-    transform: rotateX(90deg);
-    background-color: darken(var(--c-pack-inside), 20%);
-    border: 1px solid var(--c-border-outside);
+    transform: rotateX(90deg) rotateY(180deg) rotateZ(180deg);
+    background: url(../img/marlboro-logo-bottom.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-color: #fff;
+    border: 1px solid #aaa;
   }
 
   &__left {
     left: -0.5 * var(--d-diff-outside);
     transform: translateX(-49%) rotateY(90deg) translateZ(-1 * var(--d-diff-outside));
-    background: linear-gradient(90deg, var(--c-pack-inside), darken(var(--c-pack-inside), 20%));
 
     &:after {
       position: absolute;
@@ -332,14 +357,13 @@ depth: 20mm
       width: 0px;
       height: 0px;
       border-top: var(--d-height) * .2 + var(--d-diff-outside) solid transparent;
-      border-right: (var(--d-diameter) * 3) + 2 * var(--d-diff-outside) solid var(--c-pack-inside);
+      border-right: (var(--d-diameter) * 3) + 2 * var(--d-diff-outside) solid var(--c-marlboro-red);
     }
   }
 
   &__right {
     right: -1 * var(--d-diff-outside);
     transform: translateX(49%) rotateY(90deg) translateZ(-1 * var(--d-diff-outside));
-    background: linear-gradient(90deg, var(--c-pack-inside), darken(var(--c-pack-inside), 20%));
 
     &:after {
       position: absolute;
@@ -349,8 +373,16 @@ depth: 20mm
       width: 0px;
       height: 0px;
       border-top: var(--d-height) * .2  + var(--d-diff-outside)  solid transparent;
-      border-right: (var(--d-diameter) * 3) + 2 * var(--d-diff-outside)  solid var(--c-pack-inside);
+      border-right: (var(--d-diameter) * 3) + 2 * var(--d-diff-outside)  solid var(--c-marlboro-red);
     }
+  }
+
+  &__line {
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    background-color: var(--c-marlboro-red);
+    bottom: 10px;
   }
 }
 
@@ -362,9 +394,32 @@ depth: 20mm
   transform-origin: bottom;
   transition-duration: .5s;
 
+  &__sign {
+    text-transform: uppercase;
+    font-family: sans-serif;
+    font-size: 12px;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    display: inline-block;
+
+    &--front {
+      background-color: #fff;
+      padding: 5px;
+      border-radius: 20px;
+      color: var(--c-marlboro-red);
+      transform: translate(-50%, 50%);
+    }
+
+    &--back {
+      color: #fff;
+      transform: translate(-50%, -50%) rotateY(180deg);
+    }
+  }
+
   &__back {
     position: absolute;
-    background-color: #000;
+    background-color: var(--c-marlboro-red);
     left: -1 * var(--d-diff-outside);
     bottom: 0;
     height: var(--d-height) * .06;
@@ -375,7 +430,7 @@ depth: 20mm
   &__left,
   &__right {
     position: absolute;
-    background-color: #000;
+    background-color: var(--c-marlboro-red);
     bottom: 0;
     height: var(--d-height) * .06;
     width: var(--d-diameter) * 3 + 2 * var(--d-diff-outside);
@@ -397,7 +452,7 @@ depth: 20mm
     left: -1 * var(--d-diff-outside);
 
     &:after {
-      border-right: var(--d-diameter) * 3 + 2 * var(--d-diff-outside) solid #000;
+      border-right: var(--d-diameter) * 3 + 2 * var(--d-diff-outside) solid var(--c-marlboro-red);
     }
   }
 
@@ -407,13 +462,14 @@ depth: 20mm
     right: 0;
 
     &:after {
-      border-left: var(--d-diameter) * 3 + 2 * var(--d-diff-outside) solid #000;
+      border-left: var(--d-diameter) * 3 + 2 * var(--d-diff-outside) solid var(--c-marlboro-red);
     }
   }
 
   &__front {
     position: absolute;
-    background-color: #000;
+    background-image: url("../img/marlboro-logo.png");
+    background-size: 100% auto;
     left: -1 * var(--d-diff-outside);
     top: -1 * var(--d-height) * .06;
     height: var(--d-height) * .26;
@@ -428,10 +484,23 @@ depth: 20mm
     width: var(--d-diameter) * 7 + 3 * var(--d-diff-outside);
     height: var(--d-diameter) * 3 + 1.5 * var(--d-diff-outside);
     left: -1.5 * var(--d-diff-outside);
-    transform: rotateX(-90deg);
-    background-color: #000;
+    transform: rotateX(-90deg) rotateY(180deg);
+    background-color: var(--c-marlboro-red);
+    background-image: url("../img/marlboro-logo-top.jpg");
+    background-size: auto 100%;
     border: 1px solid var(--c-border-outside);
     transform-origin: bottom;
+
+    &:after {
+      position: absolute;
+      top: 0%;
+      left: 0%;
+      content: '';
+      width: 100%;
+      height: 100%;
+      transform: translateZ(-1px);
+      background-color: var(--c-marlboro-red);
+    }
   }
 }
 
@@ -453,46 +522,19 @@ depth: 20mm
 
 @keyframes dance {
   0% {
-    transform: rotate3d(1,1,0,0);
+    transform: translateZ(60px) translate(-50%, -50%) rotate3d(1,0,0,-45deg);
+  }
+  25% {
+    transform: translateZ(60px) translate(-50%, -50%) rotate3d(1,0,0,45deg);
+  }
+  50% {
+    transform: translateZ(60px) translate(-50%, -50%) rotate3d(1,1,0,-45deg);
+  }
+  75% {
+    transform: translateZ(60px) translate(-50%, -50%) rotate3d(0,1,0,45deg);
   }
   100% {
-    transform: rotate3d(1,1,0,360deg);
+    transform: translateZ(60px) translate(-50%, -50%) rotate3d(1,0,0,-45deg);
   }
 
-}
-
-@keyframes a-up {
-  0% {
-	transform: translateZ(-60px) translate(-50%, -50%) rotateX(0);
-  }
-  100% {
-	transform: translateZ(-60px) translate(-50%, -50%) rotateX(360deg);
-  }
-}
-
-@keyframes a-down {
-  0% {
-	transform: translateZ(-60px) translate(-50%, -50%) rotateX(0);
-  }
-  100% {
-	transform: translateZ(-60px) translate(-50%, -50%) rotateX(-360deg);
-  }
-}
-
-@keyframes a-left {
-  0% {
-	transform: translateZ(-60px) translate(-50%, -50%) rotateY(0);
-  }
-  100% {
-	transform: translateZ(-60px) translate(-50%, -50%) rotateY(360deg);
-  }
-}
-
-@keyframes a-right {
-  0% {
-	  transform: translateZ(-60px) translate(-50%, -50%) rotateY(0);
-  }
-  100% {
-  	transform: translateZ(-60px) translate(-50%, -50%) rotateY(-360deg);
-  }
 }
