@@ -12,7 +12,9 @@ depth: 20mm
   --d-height: 425px;
   --d-diameter: 40px;
   --d-side-width: calc(var(--d-diameter) * 3.14159265359 / 16);
+  --d-diff-inside: 1px;
   --c-pack-inside: #fff;
+  --c-border-inside: #ccc;
 }
 
 .background {
@@ -28,7 +30,8 @@ depth: 20mm
   perspective-origin:  center;
   transform: rotateX(45deg);
   padding: 10%;
-  animation: 5s dance linear infinite;
+  // animation: 5s dance linear infinite;
+  transform: rotateX(-45deg) rotateY(45deg);
 }
 
 .plane div {
@@ -42,6 +45,11 @@ depth: 20mm
   width: var(--d-diameter);
   transform-origin: center center 0;
   //animation: 5s rotating linear infinite;
+
+  &:hover {
+    transition-duration: .5s;
+    transform: translateY(-100px);
+  }
 
   &__side {
 	margin: 0;
@@ -152,55 +160,60 @@ depth: 20mm
 .pack {
   &__in {
     position: relative;
-    height: var(--d-height) + 2;
-    width: var(--d-diameter) * 7 + 2;
+    height: var(--d-height) + 2 * var(--d-diff-inside);
+    width: var(--d-diameter) * 7 + 2 * var(--d-diff-inside);
 
     &--front {
-      bottom: 0;
+      bottom: -1 * var(--d-diff-inside);
+      left: -1 * var(--d-diff-inside);
       position: absolute;
-      height: var(--d-height) + 2;
-      width: var(--d-diameter) * 7 + 2;
+      height: var(--d-height) + 2 * var(--d-diff-inside);
+      width: var(--d-diameter) * 7 + 2 * var(--d-diff-inside);
+      transform: translateZ(1.5 * var(--d-diameter) + var(--d-diff-inside));
+      border: 1px solid var(--c-border-inside);
     }
 
     &--back {
       background-color: var(--c-pack-inside);
+      bottom: -1 * var(--d-diff-inside);
+      left: -1 * var(--d-diff-inside);
       position: absolute;
-      height: var(--d-height) + 2;
-      width: var(--d-diameter) * 7 + 2;
-      background-color: var(--c-pack-inside);
+      height: var(--d-height) + 2 * var(--d-diff-inside);
+      width: var(--d-diameter) * 7 + 2 * var(--d-diff-inside);
+      background-color: darken(var(--c-pack-inside), 10%);
+      transform: translateZ(-1.5 * var(--d-diameter) - var(--d-diff-inside));
+      border: 1px solid var(--c-border-inside);
     }
 
     &--left,
     &--right {
       position: absolute;
-      height: var(--d-height) + 2;
-      width: var(--d-diameter) * 3;
-      background-color: var(--c-pack-inside);
+      height: var(--d-height) + 2 * var(--d-diff-inside);
+      width: var(--d-diameter) * 3 + 2 * var(--d-diff-inside);
+      border: 1px solid var(--c-border-inside);
     }
 
     &--bottom {
       position: absolute;
-      width: var(--d-diameter) * 7 + 2;
+      width: var(--d-diameter) * 7 + 2 * var(--d-diff-inside);
       height: var(--d-diameter) * 3;
-      bottom: -60px;
+      bottom: -1.5 * var(--d-diameter) - var(--d-diff-inside);
+      left: -1 * var(--d-diff-inside);
       transform: rotateX(90deg);
-      background-color: var(--c-pack-inside);
-    }
-
-    &--front {
-      transform: translateZ(1.5 * var(--d-diameter));
-    }
-    &--back {
-      transform: translateZ(-1.5 * var(--d-diameter));
+      background-color: darken(var(--c-pack-inside), 15%);
+      border: 1px solid var(--c-border-inside);
     }
 
     &--left {
-      left: -1px;
+      left: -1 * var(--d-diff-inside);
       transform: translateX(-50%) rotateY(90deg);
+      background: linear-gradient(90deg, var(--c-pack-inside), darken(var(--c-pack-inside), 10%));
     }
+
     &--right {
-      right: -1px;
+      right: -1 * var(--d-diff-inside);
       transform: translateX(50%) rotateY(90deg);
+      background: linear-gradient(90deg, var(--c-pack-inside), darken(var(--c-pack-inside), 10%));
     }
   }
 }

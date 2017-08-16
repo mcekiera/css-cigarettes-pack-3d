@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "postcss": "postcss --config postcss.config.js postcss/*.scss --dir scss",
     "scss": "node-sass scss/style.scss css/style.css",
-    "dev": "npm-run-all postcss scss"
+    "pug": "pug templates/index.pug --out ./",
+    "dev": "npm-run-all pug postcss scss"
   },
   "author": "",
   "license": "MIT",
@@ -18,6 +19,8 @@
     "postcss-cli": "^4.1.0",
     "postcss-cssnext": "^3.0.2",
     "postcss-load-config": "^1.2.0",
-    "postcss-scss": "^1.0.2"
+    "postcss-scss": "^1.0.2",
+    "pug": "^2.0.0-rc.3",
+    "pug-cli": "^1.0.0-alpha6"
   }
 }
