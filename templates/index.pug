@@ -1,50 +1,50 @@
 doctype html
 html(lang="en")
-include head
-body
-.container
-  .background
-    #js-stage.plane
-      #js-inner.inner
-        #js-pack.pack
-          include top
-          .outside
-            .outside__front
-              p.outside__sign 20 class a cigarettes
-              .outside__line
-            .outside__back
-              p.outside__sign.outside__sign--back 20 class a cigarettes
-              .outside__line
-            .outside__left
-              .outside__triangle.outside__triangle--left
-              .outside__line
-            .outside__right
-              .outside__triangle.outside__triangle--right
-              .outside__line
-            .outside__bottom
-            .inside
-              .inside__front.front
-                .front__main
-                .front__column--left
-                .front__column--right
-              .inside__back
-              .inside__left
-              .inside__right
-              .inside__bottom
-              include cigarettes
-.controls
-  .controls__rotate
-    button#js-x-inc &uarr;
-    button#js-x-dec &darr;
-    button#js-y-inc &rarr;
-    button#js-y-dec &larr;
-    button#js-z-inc &curarr;
-    button#js-z-dec &cularr;
-    button#js-reset R
-  .controls__hide
-    button#js-hide-outer hide outer pack
-    button#js-hide-top hide top pack
-    button#js-hide-inner hide inner pack
-    button#js-hide-cigarettes hide cigarettes
-    
-script(src='js/script.js')
+  include head
+  body
+  .container
+    .background
+      #js-stage.plane
+        #js-inner.inner
+          #js-pack.pack
+            include top
+            .outside
+              .outside__front
+                p.outside__sign 20 class a cigarettes
+                .outside__line
+              .outside__back
+                p.outside__sign.outside__sign--back 20 class a cigarettes
+                .outside__line
+              .outside__left
+                .outside__triangle.outside__triangle--left
+                .outside__line
+              .outside__right
+                .outside__triangle.outside__triangle--right
+                .outside__line
+              .outside__bottom
+              .inside
+                .inside__front.front
+                  .front__main
+                  .front__column--left
+                  .front__column--right
+                .inside__back
+                .inside__left
+                .inside__right
+                .inside__bottom
+                include cigarettes
+  .controls
+    .controls__rotate
+      button#js-x-inc &uarr;
+      button#js-x-dec &darr;
+      button#js-y-inc &rarr;
+      button#js-y-dec &larr;
+      button#js-z-inc &curarr;
+      button#js-z-dec &cularr;
+      button#js-reset R
+    .controls__hide
+      button#js-hide-outer hide outer pack
+      button#js-hide-top hide top pack
+      button#js-hide-inner hide inner pack
+      button#js-hide-cigarettes hide cigarettes
+
+  script(src='js/script.js')
