@@ -4,11 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "postcss": "postcss --config postcss.config.js postcss/*.scss --dir scss",
-    "scss": "node-sass scss/style.scss css/style.css",
-    "pug": "pug templates/index.pug --out ./",
-    "dev": "npm-run-all pug postcss scss"
+    "pug": "pug templates/index.pug --out ./"
   },
   "author": "",
   "license": "MIT",

@@ -1,0 +1,88 @@
+$inside-correction: 2px;
+$inside-left: -1.5 * $inside-correction;
+$inside-bottom: -1 * $inside-correction;
+
+.inside {
+  position: relative;
+  height: $cigarette-h;
+  width: $cigarette-w * $cigarettes-in-row;
+
+  &__front {
+    bottom: $inside-bottom;
+    left: $inside-left;
+    position: absolute;
+    height: $cigarette-h * 0.8;
+    width: $cigarette-w * $cigarettes-in-row + 3 * $inside-correction;
+    -webkit-transform: translateZ(1.5 * $cigarette-w);
+    transform: translateZ(1.5 * $cigarette-w);
+    border: 1px solid #aaa;
+    border-top: none;
+
+    .inside--hidden & {
+      display: none;
+    }
+  }
+
+  &__back {
+    background-color: #fff;
+    bottom: $inside-bottom;
+    left: $inside-left;
+    position: absolute;
+    height: $cigarette-h + 2 * $inside-correction;
+    width: $cigarette-w * $cigarettes-in-row + 3 * $inside-correction;
+    background-color: darken(#fff, 10%);
+    -webkit-transform: translateZ(-1.5 * $cigarette-w);
+    transform: translateZ(-1.5 * $cigarette-w);
+    border: 1px solid #aaa;
+
+    .inside--hidden & {
+      display: none;
+    }
+  }
+
+  &__left,
+  &__right {
+    position: absolute;
+    height: $cigarette-h + 2 * $inside-correction;
+    width: $cigarette-w * 3 + $inside-correction;
+    border: 1px solid #aaa;
+
+    .inside--hidden & {
+      display: none;
+    }
+  }
+
+  &__bottom {
+    position: absolute;
+    width: $cigarette-w * $cigarettes-in-row + 2 * $inside-correction;
+    height: $cigarette-w * 3;
+    bottom: -1.5 * $cigarette-w - $inside-correction;
+    left: -1 * $inside-correction;
+    -webkit-transform: rotateX(90deg);
+    transform: rotateX(90deg);
+    background-color: darken(#fff, 15%);
+    border: 1px solid #aaa;
+
+    .inside--hidden & {
+      display: none;
+    }
+  }
+
+  &__left {
+    left: -$inside-correction;
+    -webkit-transform: translateX(-50%) rotateY(90deg) translateY(-$inside-correction);
+    transform: translateX(-50%) rotateY(90deg) translateY(-$inside-correction);
+    background: -webkit-gradient(linear, left top, right top, from(#fff), to(darken(#fff, 10%)));
+    background: -o-linear-gradient(left, #fff, darken(#fff, 10%));
+    background: linear-gradient(90deg, #fff, darken(#fff, 10%));
+  }
+
+  &__right {
+    right: -$inside-correction;
+    -webkit-transform: translateX(50%) rotateY(90deg) translateY(-$inside-correction);
+    transform: translateX(50%) rotateY(90deg) translateY(-$inside-correction);
+    background: -webkit-gradient(linear, left top, right top, from(#fff), to(darken(#fff, 10%)));
+    background: -o-linear-gradient(left, #fff, darken(#fff, 10%));
+    background: linear-gradient(90deg, #fff, darken(#fff, 10%));
+  }
+}

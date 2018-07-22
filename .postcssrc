@@ -1,9 +1,0 @@
-{
-  "parser": "sugarss",
-  "map": false,
-  "from": "css/style.sss",
-  "to": "public/style.css",
-  "plugins": {
-    "postcss-plugin": {}
-  }
-}

@@ -1,0 +1,195 @@
+$outside-correction: 4px;
+$outside-width: $cigarette-w * $cigarettes-in-row + 3.5 * $outside-correction;
+$outside-left: -1.5 * $outside-correction;
+$outside-bottom: -1 * $outside-correction;
+
+%layered {
+  backface-visibility: hidden;
+
+  &:before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    position: absolute;
+    backface-visibility: hidden;
+    transform: rotateX(180deg);
+    background-color: #fff;
+    border: 1px solid #ccc;
+  }
+}
+
+.outside {
+  position: relative;
+  height: $cigarette-h + 2 * $outside-correction;
+  width: $cigarette-w * $cigarettes-in-row + 2 * $outside-correction;
+
+  &__sign {
+    bottom: 10px;
+    position: absolute;
+    text-transform: uppercase;
+    font-size: 18px;
+    display: block;
+    text-align: center;
+    width: 100%;
+    letter-spacing: 2px;
+    color: #A67444;
+
+    .outside--hidden & {
+      display: none;
+    }
+  }
+
+  &__front {
+    @extend %layered;
+    bottom: $outside-bottom;
+    left: $outside-left;
+    position: absolute;
+    height: 75%;
+    width: $outside-width;
+    -webkit-transform: translateZ(1.5 * $cigarette-w + $outside-correction);
+    transform: translateZ(1.5 * $cigarette-w + $outside-correction);
+    background-image: url("../img/marlboro-logo.png");
+    border: 1px solid #aaa;
+    background-size: 100% auto;
+    background-position-y: -120px;
+    background-repeat: no-repeat;
+    background-color: #fff;
+
+    .outside--hidden & {
+      display: none;
+    }
+  }
+
+  &__back {
+    @extend %layered;
+    background-color: #fff;
+    bottom: $outside-bottom;
+    left: $outside-left;
+    position: absolute;
+    height: 95%;
+    width: $outside-width;
+    background-image: url("../img/marlboro-logo.png");
+    border: 1px solid #aaa;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-color: #fff;
+    -webkit-transform: translateZ(-1.5 * $cigarette-w - $outside-correction) rotateY(180deg);
+    transform: translateZ(-1.5 * $cigarette-w - $outside-correction) rotateY(180deg);
+    border: 1px solid #aaa;
+    background-position: 0 -35px;
+
+    .outside--hidden & {
+      display: none;
+    }
+  }
+
+  &__left,
+  &__right {
+    @extend %layered;
+    position: absolute;
+    height: 75%;
+    bottom: $outside-bottom;
+    width: $cigarette-w * 3 + 2 * $outside-correction;
+    border: 1px solid #aaa;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(29%, #BA181F), color-stop(29%, #fff));
+    background: -o-linear-gradient(#BA181F 29%, #fff 29%);
+    background: linear-gradient(#BA181F 29%, #fff 29%);
+
+    .outside--hidden & {
+      display: none;
+    }
+  }
+
+  &__bottom {
+    @extend %layered;
+    position: absolute;
+    width: $outside-width;
+    height: $cigarette-w * 3 + 2 * $outside-correction;
+    bottom: ($cigarette-w * 3 + 3 * $outside-correction) / -2 - ($outside-correction / 2);
+    left: $outside-left;
+    -webkit-transform: rotateX(90deg) rotateY(180deg) rotateZ(180deg);
+    transform: rotateX(90deg) rotateY(180deg) rotateZ(180deg);
+    background: url(../img/marlboro-logo-bottom.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-color: #fff;
+    border: 1px solid #aaa;
+
+    .outside--hidden & {
+      display: none;
+    }
+  }
+
+  &__left {
+    left: -0.5 * $outside-correction;
+    -webkit-transform: translateX(-49%) rotateY(-90deg) translateZ($outside-correction);
+    transform: translateX(-49%) rotateY(-90deg) translateZ($outside-correction)
+  }
+
+  &__triangle {
+    position: absolute;
+    content: "";
+    bottom: 100%;
+    left: -1px;
+    width: 0px;
+    height: 0px;
+    border-top: $cigarette-h * .2 + 2px solid transparent;
+
+    &--left {
+      border-left: ($cigarette-w * 3) + 2 * $outside-correction solid #BA181F;
+
+      &:after {
+        content: '';
+        position: absolute;
+        content: "";
+        bottom: 100%;
+        right: 0;
+        width: 0px;
+        height: 0px;
+        border-bottom: $cigarette-h * .2 + 2px solid transparent;
+        border-left: ($cigarette-w * 3) + 2 * $outside-correction  solid #FFF;
+        backface-visibility: hidden;
+        transform: rotateX(180deg);
+      }
+    }
+
+    &--right {
+      border-right: ($cigarette-w * 3) + 2 * $outside-correction  solid #BA181F;
+
+      &:after {
+        content: '';
+        position: absolute;
+        content: "";
+        bottom: 100%;
+        left: 0;
+        width: 0px;
+        height: 0px;
+        border-bottom: $cigarette-h * .2 + 2px solid transparent;
+        border-right: ($cigarette-w * 3) + 2 * $outside-correction  solid #FFF;
+        backface-visibility: hidden;
+        transform: rotateX(180deg);
+      }
+    }
+  }
+
+  &__right {
+    right: -1 * $outside-correction;
+    -webkit-transform: translateX(49%) rotateY(90deg) translateZ(-$outside-correction);
+    transform: translateX(49%) rotateY(90deg) translateZ(-$outside-correction)
+  }
+
+  &__line {
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    background-color: #BA181F;
+    bottom: 10px;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+}

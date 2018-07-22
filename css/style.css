@@ -1,21 +1,36 @@
-/*
-cigarette (Marlboro
-height: 85mm
-width: 8mm
-carton
-width: 50mm
-height: 85mm
-depth: 20mm
- */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.controls {
+  position: fixed;
+  z-index: 99999;
+  top: 10px;
+  left: 10px; }
+  .controls__rotate button {
+    padding: 0 0 .2em 0;
+    margin: 0;
+    font-size: 20px;
+    width: 1.5em;
+    height: 1.5em;
+    line-height: 0; }
+  .controls__hide button {
+    display: block;
+    width: 120px;
+    text-align: center; }
+
 .container {
   position: relative;
   width: 100vw;
-  height: 100vh; }
+  height: 100vh;
+  overflow: hidden; }
 
 .background {
-  background-color: #99f;
-  width: 50vw;
-  height: 50vh;
+  background-color: #ccc;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
@@ -24,95 +39,49 @@ depth: 20mm
   position: absolute; }
 
 .pack {
+  left: 50%;
+  top: 50%;
+  margin-left: -140px;
+  margin-top: -212.5px;
+  position: absolute; }
+
+.plane {
+  width: 700px;
+  height: 700px;
   -webkit-transform: translateZ(60px) translate(-50%, -50%);
   transform: translateZ(60px) translate(-50%, -50%);
   left: 50%;
   top: 50%;
-  position: absolute; }
-
-.plane {
-  width: 500px;
-  height: 500px;
-  -webkit-transform: translateZ(60px) translate(-50%, -50%) rotateX(-45deg) rotateY(45deg);
-  transform: translateZ(60px) translate(-50%, -50%) rotateX(-45deg) rotateY(45deg);
-  left: 50%;
-  top: 50%;
-  -webkit-perspective: 100000000px;
-  perspective: 100000000px;
+  -webkit-perspective: 700px;
+  perspective: 700px;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   -webkit-perspective-origin: center;
   perspective-origin: center;
   padding: 10%;
   position: absolute;
-  -webkit-animation: 5s dance linear infinite;
-  animation: 5s dance linear infinite; }
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+  .plane div {
+    -webkit-perspective: 100000000px;
+    perspective: 100000000px;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d; }
 
-.plane div {
-  -webkit-perspective: 100000000px;
-  perspective: 100000000px;
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d; }
-
-.cigarette {
-  position: relative;
-  display: inline-block;
-  width: 40px;
-  -webkit-transform-origin: center center 0;
-  -ms-transform-origin: center center 0;
-  transform-origin: center center 0;
-  -webkit-transition-duration: .5s;
-  -o-transition-duration: .5s;
-  transition-duration: .5s; }
-
-.cigarette:hover {
-  -webkit-transform: translateY(-100px);
-  -ms-transform: translateY(-100px);
-  transform: translateY(-100px); }
-
-.cigarette__side {
-  margin: 0;
-  padding: 0;
-  display: inline-block;
-  position: relative;
-  width: 7.85398px;
-  height: 425px;
-  /* transition-duration: .4s;*/
-  -webkit-transform-origin: left;
-  -ms-transform-origin: left;
-  transform-origin: left;
-  background-image: url("../img/cigarette.jpg");
-  background-repeat: no-repeat;
-  background-size: cover; }
-
-.cigarette__side:after {
+.inner {
+  width: 700px;
+  height: 700px;
   position: absolute;
-  width: 102%;
-  height: 100%;
   top: 0;
-  left: -1%;
-  content: '';
-  -webkit-transform: translateZ(-1px);
-  transform: translateZ(-1px); }
-
-.cigarette__ends {
-  position: absolute;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  -webkit-transform-origin: center center 0;
-  -ms-transform-origin: center center 0;
-  transform-origin: center center 0; }
-  .cigarette__ends--bottom {
-    background-image: url("https://cloud.graphicleftovers.com/18049/1444641/tobacco-texture-background.jpg");
-    background-size: 200px;
-    -webkit-transform: translateY(405px) rotateX(-90deg);
-    transform: translateY(405px) rotateX(-90deg); }
-  .cigarette__ends--top {
-    background: -o-radial-gradient(at bottom, #aaa, #fff);
-    background: radial-gradient(at bottom, #aaa, #fff);
-    -webkit-transform: translateY(-20px) rotateX(-90deg);
-    transform: translateY(-20px) rotateX(-90deg); }
+  left: 0;
+  -webkit-perspective: 700px;
+  perspective: 700px;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-perspective-origin: center;
+  perspective-origin: center; }
 
 .row {
   position: absolute; }
@@ -126,6 +95,63 @@ depth: 20mm
   .row--rd {
     -webkit-transform: translateZ(-35px);
     transform: translateZ(-35px); }
+
+.cigarette {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  -webkit-transform-origin: center center 0;
+  -ms-transform-origin: center center 0;
+  transform-origin: center center 0;
+  -webkit-transition-duration: .5s;
+  -o-transition-duration: .5s;
+  transition-duration: .5s; }
+  .cigarette:hover {
+    -webkit-transform: translateY(-100px);
+    -ms-transform: translateY(-100px);
+    transform: translateY(-100px); }
+  .cigarette--hidden .cigarette {
+    display: none; }
+  .cigarette__side {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    position: relative;
+    width: 7.85398px;
+    height: 425px;
+    -webkit-transform-origin: left;
+    -ms-transform-origin: left;
+    transform-origin: left;
+    background-image: url("../img/cigarette.jpg");
+    background-repeat: no-repeat;
+    background-size: cover; }
+  .cigarette__side:after {
+    position: absolute;
+    width: 102%;
+    height: 100%;
+    top: 0;
+    left: -1%;
+    content: '';
+    -webkit-transform: translateZ(-1px);
+    transform: translateZ(-1px); }
+  .cigarette__ends {
+    position: absolute;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    -webkit-transform-origin: center center 0;
+    -ms-transform-origin: center center 0;
+    transform-origin: center center 0; }
+    .cigarette__ends--bottom {
+      background-image: url("https://cloud.graphicleftovers.com/18049/1444641/tobacco-texture-background.jpg");
+      background-size: 200px;
+      -webkit-transform: translateY(405px) rotateX(-90deg);
+      transform: translateY(405px) rotateX(-90deg); }
+    .cigarette__ends--top {
+      background: -o-radial-gradient(at bottom, #aaa, #fff);
+      background: radial-gradient(at bottom, #aaa, #fff);
+      -webkit-transform: translateY(-20px) rotateX(-90deg);
+      transform: translateY(-20px) rotateX(-90deg); }
 
 .cigarette__side--n0 {
   background-position: -0px 0; }
@@ -245,101 +271,20 @@ depth: 20mm
   -webkit-transform: rotateY(-22.5deg);
   transform: rotateY(-22.5deg); }
 
-.inside {
-  position: relative;
-  height: 425px;
-  width: 280px; }
-  .inside__front {
-    bottom: -2px;
-    left: -3px;
+.outside__front, .outside__back, .outside__left, .outside__right, .outside__bottom {
+  backface-visibility: hidden; }
+  .outside__front:before, .outside__back:before, .outside__left:before, .outside__right:before, .outside__bottom:before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
     position: absolute;
-    height: 340px;
-    width: 286px;
-    -webkit-transform: translateZ(62px);
-    transform: translateZ(62px);
-    border: 1px solid #aaa;
-    border-top: none; }
-  .inside__back {
+    backface-visibility: hidden;
+    transform: rotateX(180deg);
     background-color: #fff;
-    bottom: -2px;
-    left: -3px;
-    position: absolute;
-    height: 429px;
-    width: 286px;
-    background-color: #e6e6e6;
-    -webkit-transform: translateZ(-62px);
-    transform: translateZ(-62px);
-    border: 1px solid #aaa; }
-  .inside__left, .inside__right {
-    position: absolute;
-    height: 429px;
-    width: 124px;
-    border: 1px solid #aaa; }
-  .inside__bottom {
-    position: absolute;
-    width: 284px;
-    height: 120px;
-    bottom: -62px;
-    left: -2px;
-    -webkit-transform: rotateX(90deg);
-    transform: rotateX(90deg);
-    background-color: #d9d9d9;
-    border: 1px solid #aaa; }
-  .inside__left {
-    left: -2px;
-    -webkit-transform: translateX(-50%) rotateY(90deg) translateY(-4px);
-    transform: translateX(-50%) rotateY(90deg) translateY(-4px);
-    background: -webkit-gradient(linear, left top, right top, from(#fff), to(#e6e6e6));
-    background: -o-linear-gradient(left, #fff, #e6e6e6);
-    background: linear-gradient(90deg, #fff, #e6e6e6); }
-  .inside__right {
-    right: -4px;
-    -webkit-transform: translateX(50%) rotateY(90deg) translateY(-4px);
-    transform: translateX(50%) rotateY(90deg) translateY(-4px);
-    background: -webkit-gradient(linear, left top, right top, from(#fff), to(#e6e6e6));
-    background: -o-linear-gradient(left, #fff, #e6e6e6);
-    background: linear-gradient(90deg, #fff, #e6e6e6); }
-
-.front__main {
-  bottom: 0;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: #fff; }
-
-.front__column--left, .front__column--right {
-  position: absolute;
-  content: '';
-  height: 87px;
-  width: 10%;
-  top: -87px;
-  background-color: #fff; }
-
-.front__column--left:after, .front__column--right:after {
-  position: absolute;
-  content: '';
-  width: 20px;
-  height: 20px; }
-
-.front__column--left {
-  left: 0;
-  border-top-right-radius: 10px; }
-
-.front__column--left:after {
-  right: -20px;
-  bottom: 0;
-  background: -o-radial-gradient(at top right, transparent 20px, #fff 20px);
-  background: radial-gradient(at top right, transparent 20px, #fff 20px); }
-
-.front__column--right {
-  right: 0;
-  border-top-left-radius: 10px; }
-
-.front__column--right:after {
-  left: -20px;
-  bottom: 0;
-  background: -o-radial-gradient(at top left, transparent 20px, #fff 20px);
-  background: radial-gradient(at top left, transparent 20px, #fff 20px); }
+    border: 1px solid #ccc; }
 
 .outside {
   position: relative;
@@ -355,12 +300,14 @@ depth: 20mm
     width: 100%;
     letter-spacing: 2px;
     color: #A67444; }
+    .outside--hidden .outside__sign {
+      display: none; }
   .outside__front {
     bottom: -4px;
     left: -6px;
     position: absolute;
     height: 75%;
-    width: 292px;
+    width: 294px;
     -webkit-transform: translateZ(64px);
     transform: translateZ(64px);
     background-image: url("../img/marlboro-logo.png");
@@ -369,13 +316,15 @@ depth: 20mm
     background-position-y: -120px;
     background-repeat: no-repeat;
     background-color: #fff; }
+    .outside--hidden .outside__front {
+      display: none; }
   .outside__back {
     background-color: #fff;
     bottom: -4px;
     left: -6px;
     position: absolute;
     height: 95%;
-    width: 292px;
+    width: 294px;
     background-image: url("../img/marlboro-logo.png");
     border: 1px solid #aaa;
     background-size: 100% auto;
@@ -385,6 +334,8 @@ depth: 20mm
     transform: translateZ(-64px) rotateY(180deg);
     border: 1px solid #aaa;
     background-position: 0 -35px; }
+    .outside--hidden .outside__back {
+      display: none; }
   .outside__left, .outside__right {
     position: absolute;
     height: 75%;
@@ -394,12 +345,13 @@ depth: 20mm
     background: -webkit-gradient(linear, left top, left bottom, color-stop(29%, #BA181F), color-stop(29%, #fff));
     background: -o-linear-gradient(#BA181F 29%, #fff 29%);
     background: linear-gradient(#BA181F 29%, #fff 29%); }
+    .outside--hidden .outside__left, .outside--hidden .outside__right {
+      display: none; }
   .outside__bottom {
     position: absolute;
-    bottom: 0;
-    width: 292px;
+    width: 294px;
     height: 128px;
-    bottom: -70px;
+    bottom: -68px;
     left: -6px;
     -webkit-transform: rotateX(90deg) rotateY(180deg) rotateZ(180deg);
     transform: rotateX(90deg) rotateY(180deg) rotateZ(180deg);
@@ -408,38 +360,160 @@ depth: 20mm
     background-repeat: no-repeat;
     background-color: #fff;
     border: 1px solid #aaa; }
+    .outside--hidden .outside__bottom {
+      display: none; }
   .outside__left {
     left: -2px;
-    -webkit-transform: translateX(-49%) rotateY(90deg) translateZ(-4px);
-    transform: translateX(-49%) rotateY(90deg) translateZ(-4px); }
-  .outside__left:after {
+    -webkit-transform: translateX(-49%) rotateY(-90deg) translateZ(4px);
+    transform: translateX(-49%) rotateY(-90deg) translateZ(4px); }
+  .outside__triangle {
     position: absolute;
     content: "";
     bottom: 100%;
-    left: 1px;
+    left: -1px;
     width: 0px;
     height: 0px;
-    border-top: 89px solid transparent;
-    border-right: 128px solid #BA181F; }
+    border-top: 87px solid transparent; }
+    .outside__triangle--left {
+      border-left: 128px solid #BA181F; }
+      .outside__triangle--left:after {
+        content: '';
+        position: absolute;
+        content: "";
+        bottom: 100%;
+        right: 0;
+        width: 0px;
+        height: 0px;
+        border-bottom: 87px solid transparent;
+        border-left: 128px solid #FFF;
+        backface-visibility: hidden;
+        transform: rotateX(180deg); }
+    .outside__triangle--right {
+      border-right: 128px solid #BA181F; }
+      .outside__triangle--right:after {
+        content: '';
+        position: absolute;
+        content: "";
+        bottom: 100%;
+        left: 0;
+        width: 0px;
+        height: 0px;
+        border-bottom: 87px solid transparent;
+        border-right: 128px solid #FFF;
+        backface-visibility: hidden;
+        transform: rotateX(180deg); }
   .outside__right {
     right: -4px;
     -webkit-transform: translateX(49%) rotateY(90deg) translateZ(-4px);
     transform: translateX(49%) rotateY(90deg) translateZ(-4px); }
-  .outside__right:after {
-    position: absolute;
-    content: "";
-    bottom: 100%;
-    right: -1px;
-    width: 0px;
-    height: 0px;
-    border-top: 89px solid transparent;
-    border-right: 128px solid #BA181F; }
   .outside__line {
     position: absolute;
     width: 100%;
     height: 5px;
     background-color: #BA181F;
-    bottom: 10px; }
+    bottom: 10px;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden; }
+
+.inside {
+  position: relative;
+  height: 425px;
+  width: 280px; }
+  .inside__front {
+    bottom: -2px;
+    left: -3px;
+    position: absolute;
+    height: 340px;
+    width: 286px;
+    -webkit-transform: translateZ(60px);
+    transform: translateZ(60px);
+    border: 1px solid #aaa;
+    border-top: none; }
+    .inside--hidden .inside__front {
+      display: none; }
+  .inside__back {
+    background-color: #fff;
+    bottom: -2px;
+    left: -3px;
+    position: absolute;
+    height: 429px;
+    width: 286px;
+    background-color: #e6e6e6;
+    -webkit-transform: translateZ(-60px);
+    transform: translateZ(-60px);
+    border: 1px solid #aaa; }
+    .inside--hidden .inside__back {
+      display: none; }
+  .inside__left, .inside__right {
+    position: absolute;
+    height: 429px;
+    width: 122px;
+    border: 1px solid #aaa; }
+    .inside--hidden .inside__left, .inside--hidden .inside__right {
+      display: none; }
+  .inside__bottom {
+    position: absolute;
+    width: 284px;
+    height: 120px;
+    bottom: -62px;
+    left: -2px;
+    -webkit-transform: rotateX(90deg);
+    transform: rotateX(90deg);
+    background-color: #d9d9d9;
+    border: 1px solid #aaa; }
+    .inside--hidden .inside__bottom {
+      display: none; }
+  .inside__left {
+    left: -2px;
+    -webkit-transform: translateX(-50%) rotateY(90deg) translateY(-2px);
+    transform: translateX(-50%) rotateY(90deg) translateY(-2px);
+    background: -webkit-gradient(linear, left top, right top, from(#fff), to(#e6e6e6));
+    background: -o-linear-gradient(left, #fff, #e6e6e6);
+    background: linear-gradient(90deg, #fff, #e6e6e6); }
+  .inside__right {
+    right: -2px;
+    -webkit-transform: translateX(50%) rotateY(90deg) translateY(-2px);
+    transform: translateX(50%) rotateY(90deg) translateY(-2px);
+    background: -webkit-gradient(linear, left top, right top, from(#fff), to(#e6e6e6));
+    background: -o-linear-gradient(left, #fff, #e6e6e6);
+    background: linear-gradient(90deg, #fff, #e6e6e6); }
+
+.front__main {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #fff; }
+.front__column--left, .front__column--right {
+  position: absolute;
+  content: '';
+  height: 87px;
+  width: 10%;
+  top: -87px;
+  background-color: #fff; }
+.front__column--left:after, .front__column--right:after {
+  position: absolute;
+  content: '';
+  width: 20px;
+  height: 20px; }
+.front__column--left {
+  left: 0;
+  border-top-right-radius: 10px; }
+.front__column--left:after {
+  right: -20px;
+  bottom: 0;
+  background: -o-radial-gradient(at top right, transparent 20px, #fff 20px);
+  background: radial-gradient(at top right, transparent 20px, #fff 20px); }
+.front__column--right {
+  right: 0;
+  border-top-left-radius: 10px; }
+.front__column--right:after {
+  left: -20px;
+  bottom: 0;
+  background: -o-radial-gradient(at top left, transparent 20px, #fff 20px);
+  background: radial-gradient(at top left, transparent 20px, #fff 20px); }
 
 .top {
   position: absolute;
@@ -453,6 +527,8 @@ depth: 20mm
   -webkit-transition-duration: .5s;
   -o-transition-duration: .5s;
   transition-duration: .5s; }
+  .top--hidden .top {
+    display: none; }
   .top__sign {
     text-transform: uppercase;
     font-family: sans-serif;
@@ -460,7 +536,12 @@ depth: 20mm
     position: relative;
     left: 50%;
     top: 50%;
-    display: inline-block; }
+    display: inline-block;
+    margin: 0;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden; }
     .top__sign--front {
       background-color: #fff;
       padding: 5px;
@@ -476,10 +557,10 @@ depth: 20mm
   .top__back {
     position: absolute;
     background-color: #BA181F;
-    left: -4px;
+    left: -6px;
     bottom: 0;
     height: 25.5px;
-    width: 288px;
+    width: 294px;
     border: 1px solid #aaa; }
   .top__left, .top__right {
     position: absolute;
@@ -501,7 +582,7 @@ depth: 20mm
     transform-origin: left;
     -webkit-transform: rotateY(-90deg);
     transform: rotateY(-90deg);
-    left: -4px; }
+    left: -6px; }
   .top__left:after {
     border-right: 128px solid #BA181F; }
   .top__right {
@@ -517,18 +598,18 @@ depth: 20mm
     position: absolute;
     background-image: url("../img/marlboro-logo.png");
     background-size: 100% auto;
-    left: -4px;
+    left: -6px;
     top: -25.5px;
     height: 110.5px;
-    width: 290px;
+    width: 294px;
     -webkit-transform: translateZ(128px);
     transform: translateZ(128px);
     border: 1px solid #aaa; }
   .top__top {
     position: absolute;
     bottom: 25.5px;
-    width: 292px;
-    height: 126px;
+    width: 294px;
+    height: 128px;
     left: -6px;
     -webkit-transform: rotateX(-90deg) rotateY(180deg);
     transform: rotateX(-90deg) rotateY(180deg);
@@ -555,52 +636,4 @@ depth: 20mm
   -webkit-transform: translateZ(-62px) rotateX(140deg);
   transform: translateZ(-62px) rotateX(140deg); }
 
-@-webkit-keyframes rotating {
-  0% {
-    -webkit-transform: rotateX(45deg) rotateY(0);
-    transform: rotateX(45deg) rotateY(0); }
-  100% {
-    -webkit-transform: rotateX(45deg) rotateY(360deg);
-    transform: rotateX(45deg) rotateY(360deg); } }
-
-@keyframes rotating {
-  0% {
-    -webkit-transform: rotateX(45deg) rotateY(0);
-    transform: rotateX(45deg) rotateY(0); }
-  100% {
-    -webkit-transform: rotateX(45deg) rotateY(360deg);
-    transform: rotateX(45deg) rotateY(360deg); } }
-
-@-webkit-keyframes dance {
-  0% {
-    -webkit-transform: translateZ(60px) translate(-50%, -50%) rotate3d(1, 0, 0, -45deg);
-    transform: translateZ(60px) translate(-50%, -50%) rotate3d(1, 0, 0, -45deg); }
-  25% {
-    -webkit-transform: translateZ(60px) translate(-50%, -50%) rotate3d(1, 0, 0, 45deg);
-    transform: translateZ(60px) translate(-50%, -50%) rotate3d(1, 0, 0, 45deg); }
-  50% {
-    -webkit-transform: translateZ(60px) translate(-50%, -50%) rotate3d(1, 1, 0, -45deg);
-    transform: translateZ(60px) translate(-50%, -50%) rotate3d(1, 1, 0, -45deg); }
-  75% {
-    -webkit-transform: translateZ(60px) translate(-50%, -50%) rotate3d(0, 1, 0, 45deg);
-    transform: translateZ(60px) translate(-50%, -50%) rotate3d(0, 1, 0, 45deg); }
-  100% {
-    -webkit-transform: translateZ(60px) translate(-50%, -50%) rotate3d(1, 0, 0, -45deg);
-    transform: translateZ(60px) translate(-50%, -50%) rotate3d(1, 0, 0, -45deg); } }
-
-@keyframes dance {
-  0% {
-    -webkit-transform: translateZ(60px) translate(-50%, -50%) rotate3d(1, 0, 0, -45deg);
-    transform: translateZ(60px) translate(-50%, -50%) rotate3d(1, 0, 0, -45deg); }
-  25% {
-    -webkit-transform: translateZ(60px) translate(-50%, -50%) rotate3d(1, 0, 0, 45deg);
-    transform: translateZ(60px) translate(-50%, -50%) rotate3d(1, 0, 0, 45deg); }
-  50% {
-    -webkit-transform: translateZ(60px) translate(-50%, -50%) rotate3d(1, 1, 0, -45deg);
-    transform: translateZ(60px) translate(-50%, -50%) rotate3d(1, 1, 0, -45deg); }
-  75% {
-    -webkit-transform: translateZ(60px) translate(-50%, -50%) rotate3d(0, 1, 0, 45deg);
-    transform: translateZ(60px) translate(-50%, -50%) rotate3d(0, 1, 0, 45deg); }
-  100% {
-    -webkit-transform: translateZ(60px) translate(-50%, -50%) rotate3d(1, 0, 0, -45deg);
-    transform: translateZ(60px) translate(-50%, -50%) rotate3d(1, 0, 0, -45deg); } }
+/*# sourceMappingURL=style.css.map */

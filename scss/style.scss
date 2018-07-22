@@ -1,23 +1,47 @@
-/*
-cigarette (Marlboro
-height: 85mm
-width: 8mm
-carton
-width: 50mm
-height: 85mm
-depth: 20mm
- */
+$cigarette-h: 425px;
+$cigarette-w: 40px;
+$cigarettes-in-row: 7;
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.controls {
+  position: fixed;
+  z-index: 99999;
+  top: 10px;
+  left: 10px;
+
+  &__rotate button {
+    padding: 0 0 .2em 0;
+    margin: 0;
+    font-size: 20px;
+    width: 1.5em;
+    height: 1.5em;
+    line-height: 0;
+  }
+  
+  &__hide button {
+    display: block;
+    width: 120px;
+    text-align: center;
+  }
+}
 
 .container {
   position: relative;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 }
 
 .background {
-  background-color: #99f;
-  width: 50vw;
-  height: 50vh;
+  background-color: #ccc;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
   -webkit-transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
@@ -27,111 +51,53 @@ depth: 20mm
 }
 
 .pack {
-  -webkit-transform: translateZ(60px) translate(-50%, -50%);
-          transform: translateZ(60px) translate(-50%, -50%);
   left: 50%;
   top: 50%;
+  margin-left: -($cigarette-w * 3.5);
+  margin-top: -($cigarette-h / 2);
   position: absolute;
 }
 
 .plane {
-  width: 500px;
-  height: 500px;
-  -webkit-transform: translateZ(60px) translate(-50%, -50%) rotateX(-45deg) rotateY(45deg);
-          transform: translateZ(60px) translate(-50%, -50%) rotateX(-45deg) rotateY(45deg);
+  width: 700px;
+  height: 700px;
+  -webkit-transform: translateZ(60px) translate(-50%, -50%);
+          transform: translateZ(60px) translate(-50%, -50%);
   left: 50%;
   top: 50%;
-  -webkit-perspective: 100000000px;
-          perspective: 100000000px;
+  -webkit-perspective: 700px;
+          perspective: 700px;
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
   -webkit-perspective-origin:  center;
           perspective-origin:  center;
   padding: 10%;
   position: absolute;
-  -webkit-animation: 5s dance linear infinite;
-          animation: 5s dance linear infinite;
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 
+  div {
+    -webkit-perspective: 100000000px;
+    perspective: 100000000px;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
 }
 
-.plane div {
-  -webkit-perspective: 100000000px;
-          perspective: 100000000px;
+.inner {
+  width: 700px;
+  height: 700px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-perspective: 700px;
+  perspective: 700px;
   -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
-}
-
-.cigarette {
-  position: relative;
-  display: inline-block;
-  width: 40px;
-  -webkit-transform-origin: center center 0;
-      -ms-transform-origin: center center 0;
-          transform-origin: center center 0;
-  -webkit-transition-duration: .5s;
-       -o-transition-duration: .5s;
-          transition-duration: .5s
-}
-
-.cigarette:hover {
-  -webkit-transform: translateY(-100px);
-      -ms-transform: translateY(-100px);
-          transform: translateY(-100px);
-}
-
-.cigarette {
-
-  &__side {
-	margin: 0;
-	padding: 0;
-	display: inline-block;
-	position: relative;
-	width: 7.85398px;
-	height: 425px;
-	/* transition-duration: .4s;*/
-	-webkit-transform-origin: left;
-	    -ms-transform-origin: left;
-	        transform-origin: left;
-	background-image: url("../img/cigarette.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-
-  &__side:after {
-    position: absolute;
-    width: 102%;
-    height: 100%;
-    top: 0;
-    left: -1%;
-    content: '';
-    -webkit-transform: translateZ(-1px);
-            transform: translateZ(-1px);
-  }
-
-  &__ends {
-    position: absolute;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    -webkit-transform-origin: center center 0;
-        -ms-transform-origin: center center 0;
-            transform-origin: center center 0;
-
-
-    &--bottom {
-      background-image: url("https://cloud.graphicleftovers.com/18049/1444641/tobacco-texture-background.jpg");
-      background-size: 200px;
-      -webkit-transform: translateY(405px) rotateX(-90deg);
-              transform: translateY(405px) rotateX(-90deg);
-    }
-
-    &--top {
-      background: -o-radial-gradient(at bottom, #aaa,#fff);
-      background: radial-gradient(at bottom, #aaa,#fff);
-      -webkit-transform: translateY(-20px) rotateX(-90deg);
-              transform: translateY(-20px) rotateX(-90deg);
-    }
-  }
+  transform-style: preserve-3d;
+  -webkit-perspective-origin:  center;
+  perspective-origin:  center;
 }
 
 .row {
@@ -154,494 +120,14 @@ depth: 20mm
   }
 }
 
-@for $i from 0 to 16 {
-  .cigarette__side--n#{$i} {
-	background-position: -#{$i * 7.85398px} 0;
-
-    @if $i < 8 {
-      &:after {
-         background: -webkit-gradient(linear, left top, right top, from(rgba(0,0,0, abs($i / 10 - 0.8))), to(rgba(0,0,0, abs(($i + 1) / 10 - 0.8))));
-         background: -o-linear-gradient(left, rgba(0,0,0, abs($i / 10 - 0.8)), rgba(0,0,0, abs(($i + 1) / 10 - 0.8)));
-         background: linear-gradient(90deg, rgba(0,0,0, abs($i / 10 - 0.8)), rgba(0,0,0, abs(($i + 1) / 10 - 0.8)));
-      }
-    } @else if $i > 8 {
-      &:after {
-         background: -webkit-gradient(linear, left top, right top, from(rgba(0,0,0, abs(0.9 - ($i / 10)))), to(rgba(0,0,0, abs(0.8 - ($i / 10)))));
-         background: -o-linear-gradient(left, rgba(0,0,0, abs(0.9 - ($i / 10))), rgba(0,0,0, abs(0.8 - ($i / 10))));
-         background: linear-gradient(90deg, rgba(0,0,0, abs(0.9 - ($i / 10))), rgba(0,0,0, abs(0.8 - ($i / 10))));
-      }
-    }
-  }
-}
-
-.cigarette__side--n0 {
-  left: 50%;
-  -webkit-transform: translateZ(-20px) translateX(-50%);
-          transform: translateZ(-20px) translateX(-50%);
-}
-
-.cigarette__side > .cigarette__side {
-  left: 7.85398px;
-  -webkit-transform: rotateY(-22.5deg);
-          transform: rotateY(-22.5deg);
-}
-
-.inside {
-  position: relative;
-  height: 425px;
-  width: 40px * 7;
-
-  &__front {
-    bottom: -1 * 2px;
-    left: -1.5 * 2px;
-    position: absolute;
-    height: 425px * 0.8;
-    width: 40px * 7 + 3 * 2px;
-    -webkit-transform: translateZ(1.5 * 40px + 2px);
-            transform: translateZ(1.5 * 40px + 2px);
-    border: 1px solid #aaa;
-    border-top: none;
-  }
-
-  &__back {
-    background-color: #fff;
-    bottom: -1 * 2px;
-    left: -1.5 * 2px;
-    position: absolute;
-    height: 425px + 2 * 2px;
-    width: 40px * 7 + 3 * 2px;
-    background-color: darken(#fff, 10%);
-    -webkit-transform: translateZ(-1.5 * 40px - 2px);
-            transform: translateZ(-1.5 * 40px - 2px);
-    border: 1px solid #aaa;
-  }
-
-  &__left,
-  &__right {
-    position: absolute;
-    height: 425px + 2 * 2px;
-    width: 40px * 3 + 2 * 2px;
-    border: 1px solid #aaa;
-  }
-
-  &__bottom {
-    position: absolute;
-    width: 40px * 7 + 2 * 2px;
-    height: 40px * 3;
-    bottom: -1.5 * 40px - 2px;
-    left: -1 * 2px;
-    -webkit-transform: rotateX(90deg);
-            transform: rotateX(90deg);
-    background-color: darken(#fff, 15%);
-    border: 1px solid #aaa;
-  }
-
-  &__left {
-    left: -1 * 2px;
-    -webkit-transform: translateX(-50%) rotateY(90deg) translateY(-2 * 2px);
-            transform: translateX(-50%) rotateY(90deg) translateY(-2 * 2px);
-    background: -webkit-gradient(linear, left top, right top, from(#fff), to(darken(#fff, 10%)));
-    background: -o-linear-gradient(left, #fff, darken(#fff, 10%));
-    background: linear-gradient(90deg, #fff, darken(#fff, 10%));
-  }
-
-  &__right {
-    right: -2 * 2px;
-    -webkit-transform: translateX(50%) rotateY(90deg) translateY(-2 * 2px);
-            transform: translateX(50%) rotateY(90deg) translateY(-2 * 2px);
-    background: -webkit-gradient(linear, left top, right top, from(#fff), to(darken(#fff, 10%)));
-    background: -o-linear-gradient(left, #fff, darken(#fff, 10%));
-    background: linear-gradient(90deg, #fff, darken(#fff, 10%));
-  }
-}
-
-
-.front {
-  &__main {
-    bottom: 0;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-  }
-
-  &__column--left,
-  &__column--right {
-    position: absolute;
-    content: '';
-    height: 425px * 0.2 + 2px;
-    width: 10%;
-    top: -1 * 425px * 0.2 - 2px;
-    background-color: #fff
-  }
-
-  &__column--left:after, &__column--right:after {
-    position: absolute;
-    content: '';
-    width: 20px;
-    height: 20px;
-  }
-
-  &__column--left {
-    left: 0;
-    border-top-right-radius: 10px
-  }
-
-  &__column--left:after {
-    right: -20px;
-    bottom: 0;
-    background: -o-radial-gradient(at top right, transparent 20px, #fff 20px);
-    background: radial-gradient(at top right, transparent 20px, #fff 20px);
-  }
-
-  &__column--right {
-    right: 0;
-    border-top-left-radius: 10px
-  }
-
-  &__column--right:after {
-    left: -20px;
-    bottom: 0;
-    background: -o-radial-gradient(at top left, transparent 20px, #fff 20px);
-    background: radial-gradient(at top left, transparent 20px, #fff 20px);
-  }
-}
-
-.outside {
-  position: relative;
-  height: 425px + 2 * 4px;
-  width: 40px * 7 + 2 * 4px;
-
-  &__sign {
-    bottom: 10px;
-    position: absolute;
-    text-transform: uppercase;
-    font-size: 18px;
-    display: block;
-    text-align: center;
-    width: 100%;
-    letter-spacing: 2px;
-    color: #A67444;
-  }
-
-  &__front {
-    bottom: -1 * 4px;
-    left: -1.5 * 4px;
-    position: absolute;
-    height: 75%;
-    width: (40px * 7) + (3 * 4px);
-    -webkit-transform: translateZ(1.5 * 40px + 4px);
-            transform: translateZ(1.5 * 40px + 4px);
-    background-image: url("../img/marlboro-logo.png");
-    border: 1px solid #aaa;
-    background-size: 100% auto;
-    background-position-y: -120px;
-    background-repeat: no-repeat;
-    background-color: #fff;
-  }
-
-  &__back {
-    background-color: #fff;
-    bottom: -1 * 4px;
-    left: -1.5 * 4px;
-    position: absolute;
-    height: 95%;
-    width: 40px * 7 + 3 * 4px;
-    background-image: url("../img/marlboro-logo.png");
-    border: 1px solid #aaa;
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    background-color: #fff;
-    -webkit-transform: translateZ(-1.5 * 40px - 4px) rotateY(180deg);
-            transform: translateZ(-1.5 * 40px - 4px) rotateY(180deg);
-    border: 1px solid #aaa;
-    background-position: 0 -35px;
-  }
-
-  &__left,
-  &__right {
-    position: absolute;
-    height: 75%;
-    bottom: -1 * 4px;
-    width: 40px * 3 + 2 * 4px;
-    border: 1px solid #aaa;
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(29%, #BA181F), color-stop(29%, #fff));
-    background: -o-linear-gradient(#BA181F 29%, #fff 29%);
-    background: linear-gradient(#BA181F 29%, #fff 29%);
-  }
-
-  &__bottom {
-    position: absolute;
-    bottom: 0;
-    width: 40px * 7 + 3 * 4px;
-    height: 40px * 3 + 2 * 4px;
-    bottom: (40px * 3 + 3 * 4px) / -2 - 4px;
-    left: -1.5 * 4px;
-    -webkit-transform: rotateX(90deg) rotateY(180deg) rotateZ(180deg);
-            transform: rotateX(90deg) rotateY(180deg) rotateZ(180deg);
-    background: url(../img/marlboro-logo-bottom.jpg);
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-color: #fff;
-    border: 1px solid #aaa;
-  }
-
-  &__left {
-    left: -0.5 * 4px;
-    -webkit-transform: translateX(-49%) rotateY(90deg) translateZ(-1 * 4px);
-            transform: translateX(-49%) rotateY(90deg) translateZ(-1 * 4px)
-  }
-
-  &__left:after {
-    position: absolute;
-    content: "";
-    bottom: 100%;
-    left: 1px;
-    width: 0px;
-    height: 0px;
-    border-top: 425px * .2 + 4px solid transparent;
-    border-right: (40px * 3) + 2 * 4px solid #BA181F;
-  }
-
-  &__right {
-    right: -1 * 4px;
-    -webkit-transform: translateX(49%) rotateY(90deg) translateZ(-1 * 4px);
-            transform: translateX(49%) rotateY(90deg) translateZ(-1 * 4px)
-  }
-
-  &__right:after {
-    position: absolute;
-    content: "";
-    bottom: 100%;
-    right: -1px;
-    width: 0px;
-    height: 0px;
-    border-top: 425px * .2  + 4px  solid transparent;
-    border-right: (40px * 3) + 2 * 4px  solid #BA181F;
-  }
-
-  &__line {
-    position: absolute;
-    width: 100%;
-    height: 5px;
-    background-color: #BA181F;
-    bottom: 10px;
-  }
-}
-
-.top {
-  position: absolute;
-  top: 4%;
-  width: 40px * 7 + 2 * 4px;
-  -webkit-transform: translateZ(-64px);
-          transform: translateZ(-64px);
-  -webkit-transform-origin: bottom;
-      -ms-transform-origin: bottom;
-          transform-origin: bottom;
-  -webkit-transition-duration: .5s;
-       -o-transition-duration: .5s;
-          transition-duration: .5s;
-
-  &__sign {
-    text-transform: uppercase;
-    font-family: sans-serif;
-    font-size: 12px;
-    position: relative;
-    left: 50%;
-    top: 50%;
-    display: inline-block;
-
-    &--front {
-      background-color: #fff;
-      padding: 5px;
-      border-radius: 20px;
-      color: #BA181F;
-      -webkit-transform: translate(-50%, 50%);
-          -ms-transform: translate(-50%, 50%);
-              transform: translate(-50%, 50%);
-    }
-
-    &--back {
-      color: #fff;
-      -webkit-transform: translate(-50%, -50%) rotateY(180deg);
-              transform: translate(-50%, -50%) rotateY(180deg);
-    }
-  }
-
-  &__back {
-    position: absolute;
-    background-color: #BA181F;
-    left: -1 * 4px;
-    bottom: 0;
-    height: 425px * .06;
-    width: 40px * 7 + 2 * 4px;
-    border: 1px solid #aaa;
-  }
-
-  &__left,
-  &__right {
-    position: absolute;
-    background-color: #BA181F;
-    bottom: 0;
-    height: 425px * .06;
-    width: 40px * 3 + 2 * 4px
-  }
-
-  &__left:after, &__right:after {
-    position: absolute;
-    content: "";
-    top: 100%;
-    right: 0;
-    width: 0px;
-    height: 0px;
-    border-bottom: 425px * .2 solid transparent;
-  }
-
-  &__left {
-    -webkit-transform-origin: left;
-        -ms-transform-origin: left;
-            transform-origin: left;
-    -webkit-transform: rotateY(-90deg);
-            transform: rotateY(-90deg);
-    left: -1 * 4px
-  }
-
-  &__left:after {
-    border-right: 40px * 3 + 2 * 4px solid #BA181F;
-  }
-
-  &__right {
-    -webkit-transform-origin: right;
-        -ms-transform-origin: right;
-            transform-origin: right;
-    -webkit-transform: rotateY(90deg);
-            transform: rotateY(90deg);
-    right: 0
-  }
-
-  &__right:after {
-    border-left: 40px * 3 + 2 * 4px solid #BA181F;
-  }
-
-  &__front {
-    position: absolute;
-    background-image: url("../img/marlboro-logo.png");
-    background-size: 100% auto;
-    left: -1 * 4px;
-    top: -1 * 425px * .06;
-    height: 425px * .26;
-    width: 40px * 7 + 2.5 * 4px;
-    -webkit-transform: translateZ(40px * 3 + 2 * 4px);
-            transform: translateZ(40px * 3 + 2 * 4px);
-    border: 1px solid #aaa;
-  }
-
-  &__top {
-    position: absolute;
-    bottom: 425px * .06;
-    width: 40px * 7 + 3 * 4px;
-    height: 40px * 3 + 1.5 * 4px;
-    left: -1.5 * 4px;
-    -webkit-transform: rotateX(-90deg) rotateY(180deg);
-            transform: rotateX(-90deg) rotateY(180deg);
-    background-color: #BA181F;
-    background-image: url("../img/marlboro-logo-top.jpg");
-    background-size: auto 100%;
-    border: 1px solid #aaa;
-    -webkit-transform-origin: bottom;
-        -ms-transform-origin: bottom;
-            transform-origin: bottom
-  }
-
-  &__top:after {
-    position: absolute;
-    top: 0%;
-    left: 0%;
-    content: '';
-    width: 100%;
-    height: 100%;
-    -webkit-transform: translateZ(-1px);
-            transform: translateZ(-1px);
-    background-color: #BA181F;
-  }
-}
+@import "cigarette";
+@import "outside";
+@import "inside";
+@import "front";
+@import "top";
 
 .plane:hover .top,
 .top:hover {
   -webkit-transform:  translateZ(-62px) rotateX(140deg);
           transform:  translateZ(-62px) rotateX(140deg);
-}
-
-
-@-webkit-keyframes rotating {
-  0% {
-	-webkit-transform: rotateX(45deg) rotateY(0) ;
-	        transform: rotateX(45deg) rotateY(0) ;
-  }
-  100% {
-	-webkit-transform: rotateX(45deg) rotateY(360deg) ;
-	        transform: rotateX(45deg) rotateY(360deg) ;
-  }
-
-}
-
-
-@keyframes rotating {
-  0% {
-	-webkit-transform: rotateX(45deg) rotateY(0) ;
-	        transform: rotateX(45deg) rotateY(0) ;
-  }
-  100% {
-	-webkit-transform: rotateX(45deg) rotateY(360deg) ;
-	        transform: rotateX(45deg) rotateY(360deg) ;
-  }
-
-}
-
-@-webkit-keyframes dance {
-  0% {
-    -webkit-transform: translateZ(60px) translate(-50%, -50%) rotate3d(1,0,0,-45deg);
-            transform: translateZ(60px) translate(-50%, -50%) rotate3d(1,0,0,-45deg);
-  }
-  25% {
-    -webkit-transform: translateZ(60px) translate(-50%, -50%) rotate3d(1,0,0,45deg);
-            transform: translateZ(60px) translate(-50%, -50%) rotate3d(1,0,0,45deg);
-  }
-  50% {
-    -webkit-transform: translateZ(60px) translate(-50%, -50%) rotate3d(1,1,0,-45deg);
-            transform: translateZ(60px) translate(-50%, -50%) rotate3d(1,1,0,-45deg);
-  }
-  75% {
-    -webkit-transform: translateZ(60px) translate(-50%, -50%) rotate3d(0,1,0,45deg);
-            transform: translateZ(60px) translate(-50%, -50%) rotate3d(0,1,0,45deg);
-  }
-  100% {
-    -webkit-transform: translateZ(60px) translate(-50%, -50%) rotate3d(1,0,0,-45deg);
-            transform: translateZ(60px) translate(-50%, -50%) rotate3d(1,0,0,-45deg);
-  }
-
-}
-
-@keyframes dance {
-  0% {
-    -webkit-transform: translateZ(60px) translate(-50%, -50%) rotate3d(1,0,0,-45deg);
-            transform: translateZ(60px) translate(-50%, -50%) rotate3d(1,0,0,-45deg);
-  }
-  25% {
-    -webkit-transform: translateZ(60px) translate(-50%, -50%) rotate3d(1,0,0,45deg);
-            transform: translateZ(60px) translate(-50%, -50%) rotate3d(1,0,0,45deg);
-  }
-  50% {
-    -webkit-transform: translateZ(60px) translate(-50%, -50%) rotate3d(1,1,0,-45deg);
-            transform: translateZ(60px) translate(-50%, -50%) rotate3d(1,1,0,-45deg);
-  }
-  75% {
-    -webkit-transform: translateZ(60px) translate(-50%, -50%) rotate3d(0,1,0,45deg);
-            transform: translateZ(60px) translate(-50%, -50%) rotate3d(0,1,0,45deg);
-  }
-  100% {
-    -webkit-transform: translateZ(60px) translate(-50%, -50%) rotate3d(1,0,0,-45deg);
-            transform: translateZ(60px) translate(-50%, -50%) rotate3d(1,0,0,-45deg);
-  }
-
 }

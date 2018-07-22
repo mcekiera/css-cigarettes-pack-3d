@@ -1,0 +1,105 @@
+.cigarette {
+  position: relative;
+  display: inline-block;
+  width: $cigarette-w;
+  -webkit-transform-origin: center center 0;
+  -ms-transform-origin: center center 0;
+  transform-origin: center center 0;
+  -webkit-transition-duration: .5s;
+  -o-transition-duration: .5s;
+  transition-duration: .5s;
+
+  &:hover {
+    -webkit-transform: translateY(-100px);
+    -ms-transform: translateY(-100px);
+    transform: translateY(-100px);
+  }
+
+  .cigarette--hidden & {
+    display: none;
+  }
+
+  &__side {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    position: relative;
+    width: 7.85398px;
+    height: $cigarette-h;
+    -webkit-transform-origin: left;
+    -ms-transform-origin: left;
+    transform-origin: left;
+    background-image: url("../img/cigarette.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  &__side:after {
+    position: absolute;
+    width: 102%;
+    height: 100%;
+    top: 0;
+    left: -1%;
+    content: '';
+    -webkit-transform: translateZ(-1px);
+    transform: translateZ(-1px);
+  }
+
+  &__ends {
+    position: absolute;
+    border-radius: 50%;
+    width: $cigarette-w;
+    height: $cigarette-w;
+    -webkit-transform-origin: center center 0;
+    -ms-transform-origin: center center 0;
+    transform-origin: center center 0;
+
+
+    &--bottom {
+      background-image: url("https://cloud.graphicleftovers.com/18049/1444641/tobacco-texture-background.jpg");
+      background-size: 200px;
+      -webkit-transform: translateY(405px) rotateX(-90deg);
+      transform: translateY(405px) rotateX(-90deg);
+    }
+
+    &--top {
+      background: -o-radial-gradient(at bottom, #aaa,#fff);
+      background: radial-gradient(at bottom, #aaa,#fff);
+      -webkit-transform: translateY(-20px) rotateX(-90deg);
+      transform: translateY(-20px) rotateX(-90deg);
+    }
+  }
+}
+
+
+@for $i from 0 to 16 {
+  .cigarette__side--n#{$i} {
+    background-position: -#{$i * 7.85398px} 0;
+
+    @if $i < 8 {
+      &:after {
+        background: -webkit-gradient(linear, left top, right top, from(rgba(0,0,0, abs($i / 10 - 0.8))), to(rgba(0,0,0, abs(($i + 1) / 10 - 0.8))));
+        background: -o-linear-gradient(left, rgba(0,0,0, abs($i / 10 - 0.8)), rgba(0,0,0, abs(($i + 1) / 10 - 0.8)));
+        background: linear-gradient(90deg, rgba(0,0,0, abs($i / 10 - 0.8)), rgba(0,0,0, abs(($i + 1) / 10 - 0.8)));
+      }
+    } @else if $i > 8 {
+      &:after {
+        background: -webkit-gradient(linear, left top, right top, from(rgba(0,0,0, abs(0.9 - ($i / 10)))), to(rgba(0,0,0, abs(0.8 - ($i / 10)))));
+        background: -o-linear-gradient(left, rgba(0,0,0, abs(0.9 - ($i / 10))), rgba(0,0,0, abs(0.8 - ($i / 10))));
+        background: linear-gradient(90deg, rgba(0,0,0, abs(0.9 - ($i / 10))), rgba(0,0,0, abs(0.8 - ($i / 10))));
+      }
+    }
+  }
+}
+
+.cigarette__side--n0 {
+  left: 50%;
+  -webkit-transform: translateZ(-20px) translateX(-50%);
+  transform: translateZ(-20px) translateX(-50%);
+}
+
+.cigarette__side > .cigarette__side {
+  left: 7.85398px;
+  -webkit-transform: rotateY(-22.5deg);
+  transform: rotateY(-22.5deg);
+}
